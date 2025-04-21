@@ -24,7 +24,7 @@ def initialize_database():
     # Insert sample data
     print("Inserting sample data...")
     cursor.execute('''
-        INSERT INTO students (name, age,grade, gpa) VALUES
+        INSERT INTO students (name, age, grade, gpa) VALUES
         ('Alice', 16, '10th', 3.5),
         ('Bob', 17, '11th', 3.8),
         ('Charlie', 15, '9th', 3.2)
