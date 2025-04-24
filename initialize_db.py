@@ -1,6 +1,6 @@
 import sqlite3
 
-DB_NAME = 'example.db'
+DB_NAME = 'bank.db'
 
 
 def initialize_database():
@@ -13,10 +13,10 @@ def initialize_database():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS students
             (id integer primary key, 
-            name text, 
-            age integer, 
-            grade text, 
-            gpa real)
+            fName text, 
+            lName text, 
+            email text, 
+            phone_number text)
     ''')
 
     print("Table created.")
@@ -24,10 +24,10 @@ def initialize_database():
     # Insert sample data
     print("Inserting sample data...")
     cursor.execute('''
-        INSERT INTO students (name, age, grade, gpa) VALUES
-        ('Alice', 16, '10th', 3.5),
-        ('Bob', 17, '11th', 3.8),
-        ('Charlie', 15, '9th', 3.2)
+        INSERT INTO students (fName, lName, email, phone_number) VALUES
+        ('Alice', 'Hark', 'alicehark@test.com', '555-555-5555'),
+        ('Bob', 'Marley', 'bobby@test.com', '555-555-5553'),
+        ('Charlie', 'George', 'charlie@test.com', '123-123-1234')
     ''')
     print("Sample data inserted.")
     # Commit the changes and close the connection
