@@ -6,22 +6,22 @@ DB_NAME = 'bank.db'
 def create_account(name, email):
     with sqlite3.connect(DB_NAME) as conn:
      cursor = conn.cursor()
-    cursor.execute("INSERT INTO accounts (name, email) VALUES (?, ?)", (name, email))
-    conn.commit()
-    print("Account created successfully.")
+     cursor.execute("INSERT INTO accounts (name, email) VALUES (?, ?)", (name, email))
+     conn.commit()
+     print("Account created successfully.")
 
 def delete_account(account_id):
     with sqlite3.connect(DB_NAME) as conn:
      cursor = conn.cursor()
-    cursor.execute("DELETE FROM accounts WHERE account_id = ?", (account_id,))
-    conn.commit()
-    print("Account deleted.")
+     cursor.execute("DELETE FROM accounts WHERE account_id = ?", (account_id,))
+     conn.commit()
+     print("Account deleted.")
 
 def check_balance(account_id):
     with sqlite3.connect(DB_NAME) as conn:
-      cursor = conn.cursor()
-    cursor.execute("SELECT balance FROM accounts WHERE account_id = ?", (account_id,))
-    result = cursor.fetchone()
+       cursor = conn.cursor()
+       cursor.execute("SELECT balance FROM accounts WHERE account_id = ?", (account_id,))
+       result = cursor.fetchone()
     if result:
         print(f"Current balance: ${result[0]:.2f}")
     else:
@@ -30,15 +30,15 @@ def check_balance(account_id):
 def make_deposit(account_id, amount):
     with sqlite3.connect(DB_NAME) as conn:
      cursor = conn.cursor()
-    cursor.execute("UPDATE accounts SET balance = balance + ? WHERE account_id = ?", (amount, account_id))
-    conn.commit()
+     cursor.execute("UPDATE accounts SET balance = balance + ? WHERE account_id = ?", (amount, account_id))
+     conn.commit()
     print(f"Deposited ${amount:.2f}.")
 
 def make_withdrawal(account_id, amount):
     with sqlite3.connect(DB_NAME) as conn:
      cursor = conn.cursor()
-    cursor.execute("SELECT balance FROM accounts WHERE account_id = ?", (account_id,))
-    balance = cursor.fetchone()
+     cursor.execute("SELECT balance FROM accounts WHERE account_id = ?", (account_id,))
+     balance = cursor.fetchone()
     if balance and balance[0] >= amount:
         cursor.execute("UPDATE accounts SET balance = balance - ? WHERE account_id = ?", (amount, account_id))
         conn.commit()
